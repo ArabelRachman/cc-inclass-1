@@ -5,12 +5,12 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 
 
-public class WordAndCount implements Comparable<WordAndCount> {
+public class FlightAndCount implements Comparable<FlightAndCount> {
 
         private final Text word;
         private final IntWritable count;
 
-        public WordAndCount(Text word, IntWritable count) {
+        public FlightAndCount(Text word, IntWritable count) {
             this.word = word;
             this.count = count;
         }
@@ -28,7 +28,7 @@ public class WordAndCount implements Comparable<WordAndCount> {
      * @return 0 if equal, negative if this < other, positive if this > other
      */
         @Override
-        public int compareTo(WordAndCount other) {
+        public int compareTo(FlightAndCount other) {
 
             float diff = count.get() - other.count.get();
             if (diff > 0) {
@@ -45,4 +45,3 @@ public class WordAndCount implements Comparable<WordAndCount> {
             return "("+word.toString() +" , "+ count.toString()+")";
         }
     }
-

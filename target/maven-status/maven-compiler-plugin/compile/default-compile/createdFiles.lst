@@ -1,0 +1,12 @@
+edu/cs/utexas/HadoopEx/Top3Mapper.class
+edu/cs/utexas/HadoopEx/DelayRatioTop3AirlineReducer.class
+edu/cs/utexas/HadoopEx/DelayRatioTop3AirlineMapper.class
+edu/cs/utexas/HadoopEx/FlightAndCount.class
+edu/cs/utexas/HadoopEx/DelayRatioTop3AirlineDriver.class
+edu/cs/utexas/HadoopEx/DelayRatioMapper.class
+edu/cs/utexas/HadoopEx/Top3Reducer.class
+edu/cs/utexas/HadoopEx/FlightCountReducer.class
+edu/cs/utexas/HadoopEx/DelayRatioReducer.class
+edu/cs/utexas/HadoopEx/DelayRatioAndCount.class
+edu/cs/utexas/HadoopEx/FlightCountTop3AirportDriver.class
+edu/cs/utexas/HadoopEx/FlightCountMapper.class

@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -16,7 +16,7 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-public class WordCountTopKDriver extends Configured implements Tool {
+public class DelayRatioTop3AirlineDriver extends Configured implements Tool {
 
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class WordCountTopKDriver extends Configured implements Tool {
 	 */
 
 	public static void main(String[] args) throws Exception {
-		int res = ToolRunner.run(new Configuration(), new WordCountTopKDriver(), args);
+		int res = ToolRunner.run(new Configuration(), new DelayRatioTop3AirlineDriver(), args);
 		System.exit(res);
 	}
 
@@ -36,18 +36,18 @@ public class WordCountTopKDriver extends Configured implements Tool {
 		try {
 			Configuration conf = new Configuration();
 
-			Job job = new Job(conf, "WordCount");
-			job.setJarByClass(WordCountTopKDriver.class);
+			Job job = new Job(conf, "DelayRatioCalculation");
+			job.setJarByClass(DelayRatioTop3AirlineDriver.class);
 
 			// specify a Mapper
-			job.setMapperClass(WordCountMapper.class);
+			job.setMapperClass(DelayRatioMapper.class);
 
-			// specify a Reducer
-			job.setReducerClass(WordCountReducer.class);
+			// specify a Reducer  
+			job.setReducerClass(DelayRatioReducer.class);
 
 			// specify output types
 			job.setOutputKeyClass(Text.class);
-			job.setOutputValueClass(IntWritable.class);
+			job.setOutputValueClass(Text.class);
 
 			// specify input and output directories
 			FileInputFormat.addInputPath(job, new Path(args[0]));
@@ -60,18 +60,18 @@ public class WordCountTopKDriver extends Configured implements Tool {
 				return 1;
 			}
 
-			Job job2 = new Job(conf, "TopK");
-			job2.setJarByClass(WordCountTopKDriver.class);
+			Job job2 = new Job(conf, "Top3AirlinesByDelayRatio");
+			job2.setJarByClass(DelayRatioTop3AirlineDriver.class);
 
 			// specify a Mapper
-			job2.setMapperClass(TopKMapper.class);
+			job2.setMapperClass(DelayRatioTop3AirlineMapper.class);
 
 			// specify a Reducer
-			job2.setReducerClass(TopKReducer.class);
+			job2.setReducerClass(DelayRatioTop3AirlineReducer.class);
 
 			// specify output types
 			job2.setOutputKeyClass(Text.class);
-			job2.setOutputValueClass(IntWritable.class);
+			job2.setOutputValueClass(DoubleWritable.class);
 
 			// set the number of reducer to 1
 			job2.setNumReduceTasks(1);

@@ -11,12 +11,12 @@ import java.util.PriorityQueue;
 import org.apache.log4j.Logger;
 
 
-public class TopKMapper extends Mapper<Text, Text, Text, IntWritable> {
+public class Top3Mapper extends Mapper<Text, Text, Text, IntWritable> {
 
-	private Logger logger = Logger.getLogger(TopKMapper.class);
+	private Logger logger = Logger.getLogger(Top3Mapper.class);
 
 
-	private PriorityQueue<WordAndCount> pq;
+	private PriorityQueue<FlightAndCount> pq;
 
 	public void setup(Context context) {
 		pq = new PriorityQueue<>();
@@ -24,7 +24,7 @@ public class TopKMapper extends Mapper<Text, Text, Text, IntWritable> {
 	}
 
 	/**
-	 * Reads in results from the first job and filters the topk results
+	 * Reads in results from the first job and filters the top3 results
 	 *
 	 * @param key
 	 * @param value a float value stored as a string
@@ -35,9 +35,9 @@ public class TopKMapper extends Mapper<Text, Text, Text, IntWritable> {
 
 		int count = Integer.parseInt(value.toString());
 
-		pq.add(new WordAndCount(new Text(key), new IntWritable(count)) );
+		pq.add(new FlightAndCount(new Text(key), new IntWritable(count)) );
 
-		if (pq.size() > 10) {
+		if (pq.size() > 3) {
 			pq.poll();
 		}
 	}
@@ -46,9 +46,9 @@ public class TopKMapper extends Mapper<Text, Text, Text, IntWritable> {
 
 
 		while (pq.size() > 0) {
-			WordAndCount wordAndCount = pq.poll();
-			context.write(wordAndCount.getWord(), wordAndCount.getCount());
-			logger.info("TopKMapper PQ Status: " + pq.toString());
+			FlightAndCount flightAndCount = pq.poll();
+			context.write(flightAndCount.getWord(), flightAndCount.getCount());
+			logger.info("Top3Mapper PQ Status: " + pq.toString());
 		}
 	}
 

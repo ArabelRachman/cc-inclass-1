@@ -15,22 +15,22 @@ import java.util.Iterator;
 
 
 
-public class TopKReducer extends  Reducer<Text, IntWritable, Text, IntWritable> {
+public class Top3Reducer extends  Reducer<Text, IntWritable, Text, IntWritable> {
 
-    private PriorityQueue<WordAndCount> pq = new PriorityQueue<WordAndCount>(10);;
+    private PriorityQueue<FlightAndCount> pq = new PriorityQueue<FlightAndCount>(3);;
 
 
-    private Logger logger = Logger.getLogger(TopKReducer.class);
+    private Logger logger = Logger.getLogger(Top3Reducer.class);
 
 
 //    public void setup(Context context) {
 //
-//        pq = new PriorityQueue<WordAndCount>(10);
+//        pq = new PriorityQueue<FlightAndCount>(10);
 //    }
 
 
     /**
-     * Takes in the topK from each mapper and calculates the overall topK
+     * Takes in the top3 from each mapper and calculates the overall top3
      * @param text
      * @param values
      * @param context
@@ -49,16 +49,16 @@ public class TopKReducer extends  Reducer<Text, IntWritable, Text, IntWritable> 
        for (IntWritable value : values) {
            counter = counter + 1;
            logger.info("Reducer Text: counter is " + counter);
-           logger.info("Reducer Text: Add this item  " + new WordAndCount(key, value).toString());
+           logger.info("Reducer Text: Add this item  " + new FlightAndCount(key, value).toString());
 
-           pq.add(new WordAndCount(new Text(key), new IntWritable(value.get()) ) );
+           pq.add(new FlightAndCount(new Text(key), new IntWritable(value.get()) ) );
 
            logger.info("Reducer Text: " + key.toString() + " , Count: " + value.toString());
            logger.info("PQ Status: " + pq.toString());
        }
 
        // keep the priorityQueue size <= heapSize
-       while (pq.size() > 10) {
+       while (pq.size() > 3) {
            pq.poll();
        }
 
@@ -67,10 +67,10 @@ public class TopKReducer extends  Reducer<Text, IntWritable, Text, IntWritable> 
 
 
     public void cleanup(Context context) throws IOException, InterruptedException {
-        logger.info("TopKReducer cleanup cleanup.");
+        logger.info("Top3Reducer cleanup cleanup.");
         logger.info("pq.size() is " + pq.size());
 
-        List<WordAndCount> values = new ArrayList<WordAndCount>(10);
+        List<FlightAndCount> values = new ArrayList<FlightAndCount>(3);
 
         while (pq.size() > 0) {
             values.add(pq.poll());
@@ -84,9 +84,9 @@ public class TopKReducer extends  Reducer<Text, IntWritable, Text, IntWritable> 
         Collections.reverse(values);
 
 
-        for (WordAndCount value : values) {
+        for (FlightAndCount value : values) {
             context.write(value.getWord(), value.getCount());
-            logger.info("TopKReducer - Top-10 Words are:  " + value.getWord() + "  Count:"+ value.getCount());
+            logger.info("Top3Reducer - Top-3 Airports are:  " + value.getWord() + "  Count:"+ value.getCount());
         }
 
 

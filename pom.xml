@@ -32,7 +32,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>edu.cs.utexas.HadoopEx.WordCountTopKDriver</mainClass>
+							<mainClass>edu.cs.utexas.HadoopEx.FlightCountTop3AirportDriver</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

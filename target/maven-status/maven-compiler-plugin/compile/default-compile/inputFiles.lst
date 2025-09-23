@@ -1,0 +1,12 @@
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/DelayRatioTop3AirlineDriver.java
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/FlightAndCount.java
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/FlightCountMapper.java
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/DelayRatioAndCount.java
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/FlightCountReducer.java
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/Top3Reducer.java
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/Top3Mapper.java
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/DelayRatioReducer.java
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/FlightCountTop3AirportDriver.java
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/DelayRatioTop3AirlineMapper.java
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/DelayRatioMapper.java
+/u/arabel/cloud-computing/topKHadoop/src/main/java/edu/cs/utexas/HadoopEx/DelayRatioTop3AirlineReducer.java
