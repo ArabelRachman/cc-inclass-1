@@ -19,6 +19,16 @@ Input file:  Book-Tiny.txt
 
 Specify your own Output directory like 
 
+task 1: output/task-r-000000
+ATL	346836
+ORD	285884
+DFW	239551
+
+task 2: delayratiooutput/task-r-000000
+F9	13.350858345331709
+UA	14.435441010805953
+NK	15.944765880783688
+
 # Running:
 
 
